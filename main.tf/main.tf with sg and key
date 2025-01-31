@@ -1,0 +1,48 @@
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    aws = {
+      version = "~>3.1"
+    }
+  }
+}
+provider "aws" {
+  region = "ap-south-1"
+}
+resource "aws_instance" "myec2" {
+name   = "my-sg1"
+  vpc_id = "vpc-0ed0001bdda8ffe0d"
+  ami           = "ami-00bb6a80f01f03502"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.mysg.id]
+  count         = 2
+  tags = {
+    Name = "myinstance ${count.index + 1}"
+  }
+  key_name = "git1"  # Enter here new key pair name
+}
+resource "aws_security_group" "mysg" {
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+  }
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 22
+    protocol    = "tcp"
+    to_port     = 22
+  }
+}
+resource "aws_key_pair" "tf-key-pair" {
+    key_name = "tf-key-pair"
+    public_key = tls_private_key.rsa.public_key_openssh
+}
+resource "tls_private_key" "rsa" {
+    algorithm = "RSA"
+    rsa_bits  = 4096
+}
+resource "local_file" "tf-key" {
+   content  = tls_private_key.rsa.private_key_pem
+   filename = "tf-key-pair"
+}
