@@ -1,0 +1,17 @@
+resource "aws_security_group" "mysg" {
+  name   = "my-sg1"
+  vpc_id = "vpc-0ed0001bdda8ffe0d"   # Enter here vpc id
+ 
+ 
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+  }
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 22
+    protocol    = "tcp"
+    to_port     = 22
+  }
+}
