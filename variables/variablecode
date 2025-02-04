@@ -1,0 +1,20 @@
+variable "my_region" {
+   type = string
+}
+variable "access_key" {
+  type = string
+}
+variable "secret_key" {
+  type = string
+}
+variable "my_ami" {
+  type = string
+}
+
+# use variable name replace with above examle
+
+provider "aws" {
+   region = var.my_region   
+   access_key = var.access_key
+   secret_key = var.secret_key
+}
