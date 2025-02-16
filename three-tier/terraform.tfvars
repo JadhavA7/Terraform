@@ -1,0 +1,5 @@
+my_region = "ap-south-1"
+access_key = "access_key"
+secret_key = "secret_key"
+my_ami = "ami-00bb6a80f01f03502"
+ins_type = "t2.micro"
