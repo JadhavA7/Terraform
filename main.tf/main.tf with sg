@@ -10,8 +10,6 @@ provider "aws" {
   region = "ap-south-1"
 }
 resource "aws_instance" "myec2" {
-name   = "my-sg1"
-  vpc_id = "vpc-0ed0001bdda8ffe0d"
   ami           = "ami-00bb6a80f01f03502"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.mysg.id]
@@ -22,7 +20,8 @@ name   = "my-sg1"
   key_name = "git1"
 }
 resource "aws_security_group" "mysg" {
-  egress {
+   vpc_id = "vpc-0ed0001bdda8ffe0d"
+   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
