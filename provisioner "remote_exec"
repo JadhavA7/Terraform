@@ -1,0 +1,14 @@
+provisioner "remote-exec" {
+    inline=[
+      "sudo dnf update -y",
+      "sudo dnf install nginx -y",
+      "sudo service nginx start",
+      "echo 'Hello' < /usr/share/nginx/html"
+    ]
+   }
+   connection {
+     type = "ssh"
+     private_key = tls_private_key.rsa.private_key_pem
+     user = "ec2-user"
+     host = self.public_ip
+   }
