@@ -1,0 +1,7 @@
+user_data = <<-EOF
+  #!/bin/bash
+  yum update -y
+  yum install nginx -y
+  service nginx start
+  echo "Hello from Terraform" > /usr/share/nginx/html/index.html
+  EOF
