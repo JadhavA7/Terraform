@@ -1,0 +1,13 @@
+resource "aws_instance" "myec2" {
+ 
+  ami           = var.my_ami
+  instance_type = var.ins_type
+  vpc_security_group_ids = [aws_security_group.mysg.id]
+  tags = {
+    Name = "myinstance "
+  }
+  key_name = "mytf-key"
+provisioner "local-exec" {
+   command = "echo ${aws_instance.myec2.public_ip} > ip.txt"
+}
+}
