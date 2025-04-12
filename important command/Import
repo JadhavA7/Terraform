@@ -1,0 +1,3 @@
+# import command
+terraform import aws_s3_bucket.block_name bucket_name of s3
+terraform import aws_instance.block_name instance_id
