@@ -1,0 +1,14 @@
+# create new workspace and switch
+terraform workspace new workspace_name
+
+# list of workspace
+terraform workspace list
+
+# show present workspace
+terraform workspace show
+
+# for delete workspace
+terraform workspace delete workspace_name
+
+# for switch workspace 
+terraform workspace select workspace_name
