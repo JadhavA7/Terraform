@@ -1,0 +1,6 @@
+resource "null_resource" "exec" {
+    provisiner "local-exec" {
+    command = "$ {path.module} / sh_file_name  # this is executive file name .sh
+    interpreter = [ "/bin/bash " ]
+  }
+}
